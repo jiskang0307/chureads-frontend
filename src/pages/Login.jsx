@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../components/InputField";
 import LoginButton from "../components/LoginButton";
 import { Link, useNavigate } from "react-router-dom";
@@ -72,6 +72,17 @@ const handleGoogleLogin = async () => {
     console.error(error);
   }
 };
+  const currentUser = auth.currentUser;
+  console.log("🚀 ~ Home ~ currentUser:", currentUser)
+  const isLoggedIn = !!currentUser
+  
+
+  useEffect(() => {
+    // 페이지 진입시 딱 한번 실행
+    // TODO: 백엔드에 Get 요청
+    isLoggedIn && history('/')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // view
   return (
