@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PostInput from "../components/PostInput";
 import { auth } from "../firebase";
 
-const API_BASE_URL = "http://localhost:8080"; // 실제 백엔드 주소로 대체
+const API_BASE_URL = "http://localhost:8080";
 
 
 const Post = () => {
