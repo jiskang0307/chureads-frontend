@@ -14,6 +14,8 @@ const Post = () => {
 
   const [churead, setChuread] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleChange = (value) => {
     setChuread(value);
   };
@@ -55,6 +57,7 @@ const Post = () => {
     // 빈 스트링이 아닌 경우
     // TODO: 백엔드에 Post 요청
     try {
+      setIsLoading(true)
       const newItem = {
         // userName: currentUser.userName,
         userName: currentUser.displayName,
@@ -70,6 +73,8 @@ const Post = () => {
 
     } catch (error) {
       console.error("게시글 추가 에러:", error)
+    } finally {
+      setIsLoading(false)
     }
 
     history("/"); // home화면으로 이동
@@ -103,7 +108,7 @@ const Post = () => {
                 type="submit"
                 className="ml-auto px-5 py-2 bg-white text-churead-black rounded-3xl font-bold"
               >
-                게시
+                {isLoading ? "Loading..." : "게시"}
               </button>
             </div>
             {/* END: 게시 버튼 영역 */}

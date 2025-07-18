@@ -101,19 +101,24 @@ const Home = () => {
         <div>
           {/* START: 피드 영역 */}
           <span className="block p-2 text-right text-sm"> {isConnected ? "Success to connect!" : "Fail to connect..."} </span>
-          {feedList.length ? <ul>
-            {feedList.map((feed) => (
-              <FeedItem
-                key={feed._id}
-                data={feed}
-                tags={feed.tags}
-                isAuthor={feed.userId === currentUser.uid}
-                onDelete={handleDelete}
-                onEdit={handleEdit}
-                onLike={handleLike}
-              />
-            ))}
-          </ul> : <p>NO Data</p>}
+          {feedList.length ? (
+            <ul>
+              {feedList.map((feed) => (
+                <FeedItem
+                  key={feed._id}
+                  data={feed}
+                  tags={feed.tags}
+                  isAuthor={currentUser && feed.userId === currentUser.uid}
+                  onDelete={handleDelete}
+                  onEdit={handleEdit}
+                  onLike={handleLike}
+                />
+              ))}
+            </ul>
+          ) : (
+            <p>NO Data</p>
+          )}
+
           
           
           {/* END: 피드 영역 */}
